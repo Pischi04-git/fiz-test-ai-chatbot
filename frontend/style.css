@@ -1,0 +1,362 @@
+/* =====================================================
+   FIZ Karlsruhe – AI Research Assistant
+   Custom CSS
+   ===================================================== */
+
+/* --- Custom Scrollbar --- */
+.custom-scrollbar::-webkit-scrollbar {
+    width: 6px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+    background: #d1d5db;
+    border-radius: 10px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+    background: #9ca3af;
+}
+
+/* --- Message Rows --- */
+.message-row {
+    display: flex;
+    gap: 0.75rem;
+    width: 100%;
+    max-width: 56rem;
+    margin: 0 auto 1.5rem auto;
+    align-items: flex-start;
+    animation: messageIn 0.3s ease-out;
+}
+
+.message-row.user {
+    justify-content: flex-end;
+}
+
+.message-row.assistant {
+    justify-content: flex-start;
+}
+
+/* --- Message Bubbles --- */
+.message-bubble {
+    max-width: min(75%, 42rem);
+    padding: 1rem;
+    font-size: 0.875rem;
+    line-height: 1.625;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+}
+
+.message-bubble.user {
+    max-width: min(88%, 52rem);
+    padding: 0.75rem 1rem;
+    line-height: 1.45;
+}
+
+.message-bubble.assistant {
+    max-width: min(75%, 44rem);
+}
+
+.message-bubble.assistant {
+    background-color: #f3f4f6;
+    border-left: 4px solid #003366;
+    border-radius: 1rem;
+    border-top-left-radius: 0;
+    color: #1e293b;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+.message-bubble.user {
+    background-color: #003366;
+    color: white;
+    border-radius: 1rem;
+    border-top-right-radius: 0;
+    box-shadow: 0 4px 12px rgba(0, 51, 102, 0.15);
+}
+
+/* --- Message Meta (timestamp/label) --- */
+.message-meta {
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.025em;
+    color: #94a3b8;
+    margin-bottom: 0.375rem;
+}
+
+/* --- Avatar --- */
+.message-avatar {
+    width: 2.25rem;
+    height: 2.25rem;
+    border-radius: 0.375rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 10px;
+    font-weight: 700;
+    flex-shrink: 0;
+    margin-top: 0.125rem;
+}
+
+.message-avatar.assistant {
+    background-color: #003366;
+    color: white;
+}
+
+.message-avatar.user {
+    background-color: #83b81a;
+    color: white;
+    border-radius: 9999px;
+}
+
+/* --- Markdown Content in Assistant Bubbles --- */
+.message-bubble.assistant p {
+    margin: 0.5rem 0;
+}
+
+.message-bubble.assistant p:first-child {
+    margin-top: 0;
+}
+
+.message-bubble.assistant p:last-child {
+    margin-bottom: 0;
+}
+
+.message-bubble.assistant h1,
+.message-bubble.assistant h2,
+.message-bubble.assistant h3 {
+    font-weight: 700;
+    color: #003366;
+    margin: 0.75rem 0 0.375rem;
+}
+
+.message-bubble.assistant h1 {
+    font-size: 1.05rem;
+}
+
+.message-bubble.assistant h2 {
+    font-size: 0.95rem;
+}
+
+.message-bubble.assistant h3 {
+    font-size: 0.875rem;
+}
+
+.message-bubble.assistant ul,
+.message-bubble.assistant ol {
+    margin: 0.625rem 0;
+    padding-left: 1.5rem;
+}
+
+.message-bubble.assistant ul {
+    list-style-type: disc;
+}
+
+.message-bubble.assistant ol {
+    list-style-type: decimal;
+}
+
+.message-bubble.assistant li {
+    margin: 0.35rem 0;
+}
+
+.message-bubble.assistant strong {
+    font-weight: 700;
+    color: #1e293b;
+}
+
+.message-bubble.assistant em {
+    font-style: italic;
+}
+
+.message-bubble.assistant code {
+    background: rgba(0, 51, 102, 0.08);
+    color: #003366;
+    padding: 0.1rem 0.35rem;
+    border-radius: 0.25rem;
+    font-size: 0.8125rem;
+    font-family: 'Cascadia Code', 'Fira Code', 'Courier New', monospace;
+}
+
+.message-bubble.assistant pre {
+    background: #1e293b;
+    border-radius: 0.5rem;
+    padding: 1rem;
+    margin: 0.75rem 0;
+    overflow-x: auto;
+}
+
+.message-bubble.assistant pre code {
+    background: none;
+    color: #e2e8f0;
+    padding: 0;
+}
+
+/* --- Typing Indicator --- */
+.typing-indicator {
+    display: flex;
+    gap: 4px;
+    padding: 0.25rem 0;
+    align-items: center;
+}
+
+.typing-indicator span {
+    width: 7px;
+    height: 7px;
+    background: #003366;
+    border-radius: 50%;
+    animation: typingBounce 1.4s ease-in-out infinite;
+    opacity: 0.6;
+}
+
+.typing-indicator span:nth-child(2) {
+    animation-delay: 0.2s;
+}
+
+.typing-indicator span:nth-child(3) {
+    animation-delay: 0.4s;
+}
+
+/* --- Suggestion Chips --- */
+.suggestion-chip {
+    padding: 0.5rem 1rem;
+    border-radius: 9999px;
+    font-size: 0.8125rem;
+    font-weight: 500;
+    background: white;
+    border: 1px solid #e2e8f0;
+    color: #475569;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+.suggestion-chip:hover {
+    border-color: #003366;
+    color: #003366;
+    transform: translateY(-1px);
+    box-shadow: 0 2px 6px rgba(0, 51, 102, 0.15);
+}
+
+/* --- Welcome icon animation --- */
+.welcome-icon {
+    animation: float 3s ease-in-out infinite;
+}
+
+/* --- Chat History Items in Sidebar --- */
+.chat-history-item {
+    display: block;
+    width: 100%;
+    text-align: left;
+    padding: 0.5rem 0.75rem;
+    border-radius: 0.375rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: #cbd5e1;
+    cursor: pointer;
+    transition: all 0.15s ease;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.chat-history-item:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+}
+
+.chat-history-item.active {
+    background: #003366;
+    color: white;
+}
+
+/* --- Animations --- */
+@keyframes messageIn {
+    from {
+        opacity: 0;
+        transform: translateY(8px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes typingBounce {
+
+    0%,
+    60%,
+    100% {
+        transform: translateY(0);
+    }
+
+    30% {
+        transform: translateY(-6px);
+    }
+}
+
+@keyframes float {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-6px);
+    }
+}
+
+/* --- Textarea auto-resize --- */
+#message-input {
+    max-height: 150px;
+    line-height: 1.5;
+    scrollbar-width: thin;
+    outline: none;
+}
+
+/* --- Layout Adjustments for Right Sidebar --- */
+#right-sidebar {
+    transition: all 0.3s ease;
+}
+
+/* --- Message Content alignment --- */
+.message-content {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    min-width: 0;
+    flex: 1;
+}
+
+.message-content.user {
+    align-items: flex-end;
+    text-align: right;
+    flex: 1;
+}
+
+.message-content.assistant {
+    align-items: flex-start;
+    text-align: left;
+}
+
+/* --- Responsive --- */
+@media (max-width: 1024px) {
+    #right-sidebar {
+        display: none;
+    }
+}
+
+@media (max-width: 768px) {
+    .message-bubble {
+        max-width: 88%;
+    }
+
+    .message-avatar {
+        display: none;
+    }
+}
