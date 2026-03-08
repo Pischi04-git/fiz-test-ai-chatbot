@@ -111,14 +111,63 @@ Umgebungsvariablen in `app_settings.env`:
 | `APP_TEMPERATURE` | Modell-Temperature | 0.7 |
 | `APP_MAX_TOKENS` | Max. Token | 2048 |
 
-## 📝 Wissensbasis erweitern
+## 📝 Wissensbasis erweitern (RAG / Neue Daten hinzufügen)
 
-Dokumente im Ordner `data/documents/` ablegen:
+Der Chatbot nutzt **RAG (Retrieval-Augmented Generation)** mit einer lokalen **ChromaDB** Vektordatenbank. Neue Inhalte werden als Markdown-Dateien abgelegt und anschließend per Skript in die Datenbank indexiert.
 
+### Schritt-für-Schritt: Neue Dokumente hinzufügen
+
+**1. Markdown-Datei erstellen**
+
+Neue Wissensinhalte als `.md`-Datei im Ordner `data/documents/` ablegen.
+Beispiel: `data/documents/mein_thema.md`
+
+```markdown
+# Mein Thema
+
+## Abschnitt 1
+Hier steht der relevante Inhalt...
+
+## Abschnitt 2
+Weitere Informationen...
+```
+
+Bereits vorhandene Beispieldokumente:
 - `hr_richtlinien.md` – HR-Richtlinien
 - `it_support.md` – IT-Support
 - `reisekosten.md` – Reisekosten
 - `unternehmen.md` – Unternehmensinfo
+
+**2. Ingest-Skript ausführen**
+
+Nach dem Hinzufügen (oder Ändern) von Dokumenten muss die Wissensdatenbank neu aufgebaut werden:
+
+```bash
+cd backend
+python ingest.py
+```
+
+Das Skript:
+- liest alle `.md`-Dateien aus `data/documents/`
+- zerlegt sie in Abschnitte (Chunks)
+- erzeugt Embeddings mit dem lokalen Modell `all-MiniLM-L6-v2`
+- speichert alles in der lokalen ChromaDB unter `data/chroma_db/`
+
+**3. Backend neu starten**
+
+Falls das Backend bereits läuft, muss es nach der Indexierung neu gestartet werden, damit die neuen Daten genutzt werden:
+
+```bash
+cd backend
+python main.py
+```
+
+### Hinweise
+
+- Nur **Markdown-Dateien** (`.md`) werden eingelesen.
+- Das Ingest-Skript **löscht** die bestehende Collection und baut sie neu auf – alle Dokumente im Ordner werden neu indexiert.
+- Je mehr und besser strukturierte Dokumente vorhanden sind, desto präziser sind die Antworten des Chatbots.
+- Das Embedding-Modell (`all-MiniLM-L6-v2`) läuft vollständig lokal und erfordert keine Internetverbindung (nach dem ersten Download).
 
 ## 🐛 Bekannte Probleme
 
